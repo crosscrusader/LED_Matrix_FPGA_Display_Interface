@@ -1,4 +1,5 @@
 *~
 *.swp
 a.out
+Rtl/build/*
 .DS_Store

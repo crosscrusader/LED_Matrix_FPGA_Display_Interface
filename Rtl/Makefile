@@ -1,23 +1,23 @@
 SRC=$(wildcard *.v)
 
-all: top.rpt top.bin
+all: build/top.rpt top.bin
 
-top.json: %.v
+build/top.json: $(SRC)
 	yosys -p 'synth_ice40 -top top -json $@' $^
 
-top.asc: top.json top.pcf
+build/top.asc: build/top.json top.pcf
 	nextpnr-ice40 --hx8k --json $< --pcf top.pcf --asc $@
 
 #top.asc: temp.asc
 	#icebram rom.hex rom.hex < temp.asc > top.asc
 
-top.bin: top.asc
+build/top.bin: build/top.asc
 	icepack $< $@
 
-top.rpt: top.asc
+build/top.rpt: build/top.asc
 	icetime -d hx8k -p top.pcf -r $@ -c 100 $<
 
-prog: top.bin
+prog: build/top.bin
 	iceprog -S $<
 
 lint: $(SRC)
@@ -27,4 +27,4 @@ sim: tob_tb.v top.v rom.v bufferTopHalf.v comm.v
 	iverilog -o sim $^
 	vvp sim
 clean: 
-	rm top.asc top.bin top.rpt top.json
+	rm build/top.asc build/top.bin build/top.rpt build/top.json

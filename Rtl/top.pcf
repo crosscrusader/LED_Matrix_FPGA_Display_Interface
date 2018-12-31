@@ -21,4 +21,4 @@ set_io LAT B6     # D6
 
 #Overhead Signals
 set_io done  B7
-set_io clk J3
+set_io sys_clk J3
