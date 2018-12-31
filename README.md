@@ -1,5 +1,8 @@
 # Documentation
 Full on Documentation soon to be generate with Sphinx.
+## References
+ - [RaysLogic](http://www.rayslogic.com/propeller/programming/AdafruitRGB/AdafruitRGB.htm)
+  - [Useful DataSheet for driver chips](http://www.rayslogic.com/propeller/programming/AdafruitRGB/MBI5026.pdf)
 ## Architecture
 The current architecture is somewhat as presented below.
 ![System Architecture](Documentation/Content/System_Schematic.svg)
