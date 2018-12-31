@@ -2,7 +2,7 @@
 Full on Documentation soon to be generate with Sphinx.
 ## Architecture
 The current architecture is somewhat as presented below.
-![System Architecture] (Documentation/Content/System_Schematic.svg)
+![System Architecture](Documentation/Content/System_Schematic.svg)
 # Tasks
 ## Display Logic
  - [ ] Confirm logic is functional with verilator
