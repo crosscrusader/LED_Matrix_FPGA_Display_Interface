@@ -1,5 +1,7 @@
 # Documentation
 Full on Documentation soon to be generate with Sphinx.
+## Quick Workflow Overview
+``make lint`` in /rtl has verilator lint all verilog. ICE40 specific modules and logics are excluded from linting via `` `ifndef verilator``
 ## References
  - [RaysLogic](http://www.rayslogic.com/propeller/programming/AdafruitRGB/AdafruitRGB.htm)
   - [Useful DataSheet for driver chips](http://www.rayslogic.com/propeller/programming/AdafruitRGB/MBI5026.pdf)
