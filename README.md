@@ -7,7 +7,7 @@ The verilog can currently be automatically synthesized for either the ice40 arch
 The pinouts for the respective architecture can be found in the rtl/ice40 and rtl/ecp folders respectively. The pinouts were chosen with the [iCE-40-Hx8k Breakout Board](https://www.latticesemi.com/Products/DevelopmentBoardsAndKits/iCE40HX8KBreakoutBoard.aspx) and the [ECP5 Evaluation Board](http://www.latticesemi.com/ecp5-evaluation) evaluation board in mind.
 ### ECP5 Evaluation Board
 Slicing off the tabs and part of the casing of the 16 pin ribbon cable terminal connector allows the connector to be placed snugly on the Versa header of the PCB as shown below.
-![Versa Connector](Documentation/Content/Versa Connector.png)
+![Versa Connector](Documentation/Content/Versa_Connector.png)
 This is the corresponding pinout.
 ![Versa Header - Ribbon Cable Pinout](Documentation/Content/Pinout.svg)
 ## References
