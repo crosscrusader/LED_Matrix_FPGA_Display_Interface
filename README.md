@@ -11,6 +11,7 @@ Slicing off the tabs and part of the casing of the 16 pin ribbon cable terminal 
 <img src="Documentation/Content/Versa_Connector.png" width="400">
 
 This is the corresponding pinout.
+
 ![Versa Header - Ribbon Cable Pinout](Documentation/Content/Pinout.svg)
 ## References
  - [RaysLogic](http://www.rayslogic.com/propeller/programming/AdafruitRGB/AdafruitRGB.htm)
