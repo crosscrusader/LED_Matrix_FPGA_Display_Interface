@@ -1,3 +1,9 @@
+## What Is This
+A simple way to drive LED Matrix displays without consuming all your Arduino CPU cycles.
+### Operation
+The Arduino can operate the display in two modes. Text mode and graphical mode. In text mode, the Arduino sends the FPGA characters to render. In graphical mode, the Arduino can address blocks of the display followed by a stream of 24-bit pixel values to display.
+### Interface
+The Arduino can communicate with the FPGA both over SPI and I2C.
 # Documentation
 Full on Documentation soon to be generated with Sphinx.
 # Dependencies
