@@ -1,0 +1,24 @@
+#HUB 75 PINOUT
+set_io R1_data A1   # D8
+set_io B1_data B3   # D2
+set_io R2_data C3   
+set_io B2_data C4  
+set_io A C5
+set_io C C6
+set_io clk_out C7
+set_io OE_N A7    # D1
+
+set_io G1_data A2   # D9
+set_io G2_data B4   # D4
+set_io B B5
+set_io D A5
+set_io LAT B6     # D6
+
+#Arduino PINOUT
+#set_io ArduinoData A10
+#set_io busClock C9
+#set_io resetIn B10
+
+#Overhead Signals
+set_io done  B7
+set_io clk J3
