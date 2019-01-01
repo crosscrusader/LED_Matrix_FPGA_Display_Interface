@@ -20,5 +20,4 @@ set_io LAT B6     # D6
 #set_io resetIn B10
 
 #Overhead Signals
-set_io done  B7
-set_io sys_clk J3
+set_io osc_clk_in J3

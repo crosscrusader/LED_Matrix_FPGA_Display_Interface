@@ -1,6 +1,10 @@
 module screen_controller(
 	//input
-	input clk_in, locked,
+	input clk_in, 
+
+	`ifdef ice40
+	input locked,
+	`endif
 
 	//output
 	////Display Top Half
@@ -65,8 +69,10 @@ column = 0;
 end
 
 always @(posedge clk_in) begin
+	`ifdef ice40
 	if(locked)
-		begin
+	begin
+	`endif
 			if(row == SCREEN_DEPTH - 1)
 				begin
 					row <= 0;
@@ -103,7 +109,9 @@ always @(posedge clk_in) begin
 						end
 					endcase
 				end // end else
+		`ifdef ice40
 		end // locked block
+		`endif
 	end //always block
 
 endmodule //screen_controller

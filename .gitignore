@@ -2,6 +2,6 @@
 *.swp
 *.swo
 a.out
-Rtl/build_ice40/*
-Rtl/build_ecp5/*
+Rtl/ice40/build/*
+Rtl/ecp5/build/*
 .DS_Store

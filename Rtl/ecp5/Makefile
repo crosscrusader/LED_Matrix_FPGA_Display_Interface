@@ -1,22 +1,25 @@
-PROJ=blinky
+PROJ=top
+SRC=$(wildcard *.v)
+SRC += $(wildcard ../*.v)
 
-all: ${PROJ}.bit
+all: build/${PROJ}.svf
 
-%.json: %.v
-	yosys -q -p "synth_ecp5 -nomux -json $@" $<
+build/${PROJ}.json: $(SRC)
+	mkdir -p build
+	yosys -p 'read_verilog -Decp5 $^; synth_ecp5 -top ${PROJ} -json $@'
 
-%_out.config: %.json
-	nextpnr-ecp5 -q --json $< --basecfg configs/empty_lfe5um5g-85f.config --textcfg $@ --um5g-85k --package CABGA381 --lpf ecp5evn.lpf
+build/${PROJ}_out.config: build/${PROJ}.json
+	nextpnr-ecp5 -q --json $< --basecfg configs/empty_lfe5um5g-85f.config --textcfg $@ --um5g-85k --package CABGA381 --lpf ${PROJ}.lpf
 
-%.bit: %_out.config
-	ecppack --svf ${PROJ}.svf $< $@
+build/${PROJ}.bit: build/${PROJ}_out.config
+	ecppack --svf build/${PROJ}.svf $< $@
 
-${PROJ}.svf : ${PROJ}.bit
+build/${PROJ}.svf : build/${PROJ}.bit
 
-prog: ${PROJ}.svf
-	openocd -f configs/ecp5-evn.cfg -c "transport select jtag; init; svf $<; exit" -l prog.log
+prog: build/${PROJ}.svf
+	openocd -f configs/ecp5-evn.cfg -c "transport select jtag; init; svf $<; exit" -l build/prog.log
 
 clean:
-	rm -f *.svf *.bit *.config *.json
+	rm -f build/*.svf build/*.bit build/*.config build/*.json
 
 .PHONY: prog clean
