@@ -15,9 +15,9 @@ EHXPLLL #(
         .CLKI_DIV(1),
         .FEEDBK_PATH("INT_OP")
     ) pll_i (
-        .CLKI(clki),
-        .CLKFB(clko),
-        .CLKOP(clko),
+        .CLKI(clock_in),
+        .CLKFB(clock_out),
+        .CLKOP(clock_out),
         .RST(1'b0),
         .STDBY(1'b0),
         .PHASESEL0(1'b0),
