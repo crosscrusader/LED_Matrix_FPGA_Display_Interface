@@ -22,24 +22,24 @@ module screen_controller(
 	
 //Declarations and Assignments
 	//Should support up to 64x64 sized displays
-	reg [5:0] row;
-	reg [5:0] column;
+	reg [5:0] row = 0;
+	reg [5:0] column = 0;
 	assign {E,D,C,B,A} = row[4:0];
 
 	//assign states
-	reg [1:0] state;
-	assign clk_out  = ((state == SDI)&&(clk_in))? 1:0;
+	reg [1:0] state = 0;
+	assign clk_out  = ((state == SDI)&&(clk_divided))? 1:0;
 	assign OE_N = (state != OUTPUTTING)? 1:0;
 	assign LAT = (state == LATCHING)? 1:0;
 
 	//assign colors
-	assign R1_data = ((row == 0)&&(column == 0))? 1:0;
-	assign G1_data = ((row == 1)&&(column == 1))? 1:0;
-	assign B1_data = ((row == 2)&&(column == 2))? 1:0;
+	assign R1_data = ((row == 0)&&(column == 0)&&(state == SDI))? 1:0;
+	assign G1_data = ((row == 1)&&(column == 1)&&(state == SDI))? 1:0;
+	assign B1_data = ((row == 2)&&(column == 2)&&(state == SDI))? 1:0;
 
-	assign R2_data = ((row == 0)&&(column == 0))? 1:0;
-	assign G2_data = ((row == 1)&&(column == 1))? 1:0;
-	assign B2_data = ((row == 2)&&(column == 2))? 1:0;
+	assign R2_data = ((row == 0)&&(column == 0)&&(state == SDI))? 1:0;
+	assign G2_data = ((row == 1)&&(column == 1)&&(state == SDI))? 1:0;
+	assign B2_data = ((row == 2)&&(column == 2)&&(state == SDI))? 1:0;
 
 //Parameters
 	parameter 
@@ -61,25 +61,25 @@ module screen_controller(
 		//to the time required to shift in 
 		//data and latch it
 		OUTPUT_DELAY = SCREEN_WIDTH + 1;
-
-initial begin
-row = 0;
-state = 0;
-column = 0;
-end
+reg [31:0] counter = 0;
+reg clk_divided = 0;
 
 always @(posedge clk_in) begin
+	counter <= counter + 1;
+	if(counter == 4)
+	begin
+	clk_divided <= ~clk_divided;
+	counter <= 0;
+	end
+end
+
+always @(posedge clk_divided) begin
 	`ifdef ice40
 	if(locked)
 	begin
+	else
 	`endif
-			if(row == SCREEN_DEPTH - 1)
 				begin
-					row <= 0;
-				end
-			else
-				begin
-					row <= row + 1;
 					case(state)
 					SDI:
 						begin
@@ -104,6 +104,10 @@ always @(posedge clk_in) begin
 							if(column == OUTPUT_DELAY)
 								begin
 									column <= 0;
+									if(row == SCREEN_DEPTH/2)
+											row <= 0;
+									else
+											row <= row + 1;
 									state <= SDI;
 								end
 						end
