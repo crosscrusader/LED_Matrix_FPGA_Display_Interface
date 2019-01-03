@@ -35,6 +35,7 @@ The current architecture is somewhat as presented below.
 ![System Architecture](Documentation/Content/System_Schematic.svg)
 # Tasks
 ## Display Logic
+ - [x] Display basic 3-bit color.
  - [ ] Confirm logic is functional with verilator
  - [ ] Display streak free colors on the FPGA
  - [ ] Display entire image on FPGA

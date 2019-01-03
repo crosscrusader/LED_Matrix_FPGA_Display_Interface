@@ -1,6 +1,7 @@
 *~
 *.swp
 *.swo
+*.vcd
 a.out
 Rtl/ice40/build/*
 Rtl/ecp5/build/*
